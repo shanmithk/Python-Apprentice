@@ -9,3 +9,14 @@ write a new program that uses a loop to draw a pentagon.
 """
 
 ... # Your code here
+import turtle
+turtle.setup (width=600, height=600)
+
+fred = turtle.Turtle()  
+
+fred.shape('turtle')                    # Set the shape of the turtle to a turtle
+fred.speed(2) 
+
+for i in range(5):
+    fred.forward(100)
+    fred.right(72)
