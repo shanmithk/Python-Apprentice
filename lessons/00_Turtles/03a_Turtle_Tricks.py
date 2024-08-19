@@ -12,11 +12,21 @@ to see how to use the turtle commands.
 import turtle                           # Tell Python we want to work with the turtle
 turtle.setup (width=600, height=600)    # Set the size of the window
 
-tina = turtle.Turtle()                  # Create a turtle named tina
+fred = turtle.Turtle()                  # Create a turtle named tina
 
 # Use tina.forward() and tina.left() to draw a triangle
 # Make each side of the triangle a different color with 
 # tina.pencolor()
+fred.pencolor("blue")
+fred.forward(100)
+fred.right(120)
+fred.pencolor("pink")
+fred.forward(100)
+fred.right(120)
+fred.pencolor("green")
+fred.forward(100)
+
+
 
 ... # Your code here
 
