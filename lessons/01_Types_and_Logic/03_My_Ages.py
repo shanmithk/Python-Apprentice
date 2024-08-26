@@ -37,10 +37,22 @@ window = Tk()     # Create a window object
 window.withdraw() # Hide the window; we just want to see pop ups
 
 # Ask the user's age
-
+age = simpledialog.askinteger( title="hi", prompt="How old are you" )
 # Use if statements to determine the age group
 # and create a message
 
+if age <= 2:
+    messagebox.showifo(title= "category", message="You are a baby")
+elif age <= 5 and age >=3:
+    messagebox.showifo(title= "category", message="You are a toddler") 
+elif age <= 12 and age >=6:
+    messagebox.showifo(title= "category", message="You are a child") 
+elif age <= 19 and age >=13:
+    messagebox.showifo(title= "category", message="You are a teenager")
+elif age <= 64 and age >=20:
+    messagebox.showifo(title= "category", message="You are a Adult")
+elif age >= 65:
+    messagebox.showifo(title= "category", message="You are a Senior")                        
 # Show the message to the user
 
 
