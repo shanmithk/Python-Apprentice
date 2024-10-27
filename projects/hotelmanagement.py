@@ -15,7 +15,7 @@ def add_people():
     room_got = input(f"Which rooms would you like? The rooms are{room_nums} and the checked out rooms are{checked_rooms}." )
     booked = room_got.split(",")
     price = int(len(booked)) * 200
-    print("That will be $" + str(price))
+    print("That will be $" + str(price)+ " per night.")
     checked_rooms.extend([int(room)for room in booked])
     for room in booked:
         rooms[int(room)] = name_people
@@ -38,6 +38,3 @@ while room_nums:
 
 
 
-"""for key, value in rooms.items():
-        if value not in checked_rooms:
-            key_temp = key"""
