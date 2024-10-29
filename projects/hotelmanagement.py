@@ -13,20 +13,20 @@ checked_rooms = list()
 rooms = {}
 def add_people():
     name_people = input("What's your name?")
-    room_got = input(f"Which rooms would you like? The rooms are{room_nums} and the checked out rooms are{checked_rooms}." )
-    booked = room_got.split(",")
-    price = int(len(booked)) * 200
-    night = input("How many nights are you staying with us?")
-    print("That will be $" + str(int(price)*int(night)) + " for the whole stay.")
-    checked_rooms.extend([int(room)for room in booked])
-    for room in booked:
-        rooms[int(room)] = name_people
+    num_ppl = input("How many people are staying with us?")
+    room_got = input(f"Which rooms would you like? The rooms are{room_nums} and the checked out rooms are{checked_rooms}. Only 4 people are allowed in each room." )
+    nights = input("How many nights are you staying with us?")
+    if int(num_ppl) <= 4 * int(room_got):
+        booked = room_got.split(",")
+        price = int(len(booked)) * 200
+        print("That will be $" + str(int(price)*int(nights)) + " for the whole stay.")
+        checked_rooms.extend([int(room)for room in booked])
+        for room in booked:
+            rooms[int(room)] = name_people
+    else:
+        print("Please book more roooms, only 4 people are allowed per room.")
+        add_people()
     
-    rooms_available = []
-    for x in room_nums:
-        if x not in checked_rooms:
-            rooms_available.extend(x)
-    print(f"Here are the remaining available rooms:   {rooms_available}")
 
     
 def remove_people():
@@ -39,12 +39,6 @@ def remove_people():
         del rooms[room]
         checked_rooms.remove(room)
    
-
-
-         
-            
-
-
 while room_nums:
     inout = (input("Are you checking in or checking out?"))
     if inout == "in":
