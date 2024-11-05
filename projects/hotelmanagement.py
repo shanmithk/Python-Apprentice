@@ -1,4 +1,6 @@
-from tkinter import messagebox, simpledialog, Tk 
+from tkinter import messagebox, simpledialog, Tk
+
+from sklearn.base import check_is_fitted 
 """
 Ask how many people, rooms. amd nights.
 Maybe different types of rooms.
@@ -14,19 +16,28 @@ rooms = {}
 def add_people():
     name_people = input("What's your name?")
     num_ppl = input("How many people are staying with us?")
-    room_got = input(f"Which rooms would you like? The rooms are{room_nums} and the checked out rooms are{checked_rooms}. Only 4 people are allowed in each room." )
+    booked = ask_rooms(num_ppl)
     nights = input("How many nights are you staying with us?")
-    if int(num_ppl) <= 4 * int(room_got):
-        booked = room_got.split(",")
-        price = int(len(booked)) * 200
-        print("That will be $" + str(int(price)*int(nights)) + " for the whole stay.")
-        checked_rooms.extend([int(room)for room in booked])
-        for room in booked:
-            rooms[int(room)] = name_people
-    else:
-        print("Please book more roooms, only 4 people are allowed per room.")
-        add_people()
+    price = int(len(booked)) * 200
+    print("That will be $" + str(int(price)*int(nights)) + " for the whole stay.")
+    checked_rooms.extend(booked)
+    for room in booked:
+        rooms[room] = name_people
     
+
+def ask_rooms(num_ppl):
+    room_got = input(f"Which rooms would you like? The rooms are{room_nums} and the checked out rooms are{checked_rooms}. Only 4 people are allowed in each room." )
+    booked = room_got.split(",")
+    booked = [int(room)for room in booked]
+    taken_rooms = [room for room in booked if room in rooms.keys()]
+    if int(num_ppl) > 4 * len(booked):
+        print("Please book more roooms, only 4 people are allowed per room.")
+        return ask_rooms(num_ppl)
+    elif taken_rooms:      
+        print("Sorry, the room that you booked is already taken by another customer, please book a different room.")
+        return ask_rooms(num_ppl) 
+    else:
+        return booked     
 
     
 def remove_people():
