@@ -1,5 +1,6 @@
 from tkinter import messagebox, simpledialog, Tk
 
+from numpy import empty
 from sklearn.base import check_is_fitted 
 """
 Ask how many people, rooms. amd nights.
@@ -46,11 +47,22 @@ def remove_people():
     for room, name in rooms.items():
         if name == name_people:
             booked.append(room)
+    if booked is empty:
+        print ("No rooms are currently booked")
+        return
+        
     for room in booked:        
-        del rooms[room]
-        checked_rooms.remove(room)
+        
+        if name_people in rooms:
+            print("Error: You were never checked in.")
+            
+        else:
+            del rooms[room]
+            checked_rooms.remove(room)
+            print("Thank you for staying Shanmith Inn")
+    return
    
-while room_nums:
+def check_out(room_nums, rooms, add_people, remove_people):
     inout = (input("Are you checking in or checking out?"))
     if inout == "in":
         add_people()
@@ -59,5 +71,8 @@ while room_nums:
         print("Enjoy your stay.")
     elif inout == "out":
         remove_people()
-        print("Thank you for staying Shanmith Inn")
+        
+
+while room_nums:
+    check_out(room_nums, rooms, add_people, remove_people)
 
