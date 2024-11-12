@@ -59,8 +59,8 @@ def remove_people():
         else:
             del rooms[room]
             checked_rooms.remove(room)
-            print("Thank you for staying Shanmith Inn")
-    return
+            print("Thank you for staying at Shanmith Inn")
+    return name_people
    
 def check_out(room_nums, rooms, add_people, remove_people):
     inout = (input("Are you checking in or checking out?"))
@@ -70,7 +70,9 @@ def check_out(room_nums, rooms, add_people, remove_people):
         print(room_nums)
         print("Enjoy your stay.")
     elif inout == "out":
-        remove_people()
+        print(rooms)
+        if remove_people() not in rooms.values():
+            print("you have been checked out already or you were never checked in.")
         
 
 while room_nums:
